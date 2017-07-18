@@ -58,6 +58,8 @@ RUN service postgresql start && \
 RUN service postgresql start && \
   pg_createcluster --start -e UTF-8 9.3 main
 
+RUN wget -O /app/git/data/country_osm_grid.sql.gz http://www.nominatim.org/data/country_grid.sql.gz
+
 RUN sudo -u postgres /usr/lib/postgresql/9.3/bin/pg_ctl start -w -D /etc/postgresql/9.3/main/ && \
   cat /var/log/postgresql/postgresql-9.3-main.log && \
   sudo -u postgres psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='nominatim'" | grep -q 1 || sudo -u postgres createuser -s nominatim && \
