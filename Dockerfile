@@ -16,7 +16,7 @@ RUN apt-get -y install build-essential gcc git osmosis  libxml2-dev libgeos-dev 
 RUN apt-get -y install autoconf make g++ libboost-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev lua5.2 liblua5.2-dev
 
 # Install PHP5
-RUN apt-get -y install php5 php-pear php5-pgsql php5-json php-db
+RUN apt-get -y install php5 php-pear php5-pgsql php5-json php-db php5-intl
 
 # From the website "If you plan to install the source from github, the following additional packages are needed:"
 # RUN apt-get -y install git autoconf-archive
