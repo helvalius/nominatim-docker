@@ -81,6 +81,7 @@ RUN sudo -u postgres /usr/lib/postgresql/9.3/bin/pg_ctl start -w -D /etc/postgre
   sudo -u nominatim ./utils/setup.php --osm-file /app/data.pbf --all --threads 2
 
 RUN mkdir -p /var/www/nominatim
+RUN ln -s ./search.php /app/nominatim/website/index.php || true
 RUN cp -R /app/nominatim/website /var/www/nominatim/
 RUN cp -R /app/nominatim/settings /var/www/nominatim/
 RUN chown -R nominatim:www-data /var/www/nominatim
