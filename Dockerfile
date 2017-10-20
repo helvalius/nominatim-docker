@@ -64,10 +64,11 @@ RUN sudo -u postgres /usr/lib/postgresql/9.3/bin/pg_ctl start -w -D /etc/postgre
   sudo -u postgres psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='www-data'" | grep -q 1 || sudo -u postgres createuser -SDR www-data && \
   sudo -u postgres psql postgres -c "DROP DATABASE IF EXISTS nominatim"
 
-RUN wget --output-document=/app/data.pbf $OSM
-# RUN wget --output-document=/app/data.pbf http://download.geofabrik.de/europe/luxembourg-latest.osm.pbf
-# RUN wget --output-document=/app/data.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
-# RUN wget --output-document=/app/data.pbf http://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf
+RUN wget --timestamping --output-document=/app/git/data/country_osm_grid.sql.gz http://www.nominatim.org/data/country_grid.sql.gz
+RUN wget --timestamping --output-document=/app/data.pbf $OSM
+# RUN wget --timestamping --output-document=/app/data.pbf http://download.geofabrik.de/europe/luxembourg-latest.osm.pbf
+# RUN wget --timestamping --output-document=/app/data.pbf http://download.geofabrik.de/north-america-latest.osm.pbf
+# RUN wget --timestamping --output-document=/app/data.pbf http://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf
 
 WORKDIR /app/nominatim
 
